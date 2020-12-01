@@ -1,0 +1,90 @@
+
+K-means spark bon tutoriel : https://rsandstroem.github.io/sparkkmeans.html
+
+ 										           -------------------Text processing (20_news_group)-------------------
+Retenir le corpus de 18828 / 20 000 : from ans subject keep , removing duplicate
+Preprocessing et chargement des données : 
+
+1. Categories selectionnées : 
+
+arts music 227
+business dealbook 382
+fashion weddings 329
+magazine 156
+realestate 145
+sports baseball 281
+technology 205
+world europe 358
+travel 142
+
+09 categories :  2 225 articles au total
+
+2. bigrams dans chaque categories et remplacements ( pour plus tard , apres la chaine de traitement)
+
+3. features extractions - - - 200 ?
+   -  Effectuer un pos tagging au prealable : ne garder que les noms et termes rares ( très discriminants )
+   -  Former des bigrames : peut ameliorer la qualité des feaatures
+on a 07 documents. chacun document c'est un regroupemnt d'article de la même collections
+IDF : avec les 07 documents/categories
+
+4. tf-idf matrix / vectorization :
+
+Documents = ensemble d'articles soit 1 602 documents
+IDF : utiliser la notion de document vue precedemment
+
+
+5.metrics purity and precision
+
+6.expressions regulieres
+- Solution retenu : tokenization avec work_tokenize de nltk. Il vas subdiviser en sous listes les expressions ambigues. Ensuite on retire tous les mots dont la taille est inferieur à 2.
+
+- '\n' : déja gerer 
+- transformer tous les extraits en minuscule
+
+Inutules: 
+
+'\n', ':', '(' , ')' , '\ŧ' , ","
+
+ '\ŧ' : gerer par le word tokenize , }, : , < , << , > , >> , [ , ' , " , ] , ( , ) , - - , >, >>, < , << , / , \ , * , | , - , +, adresses mails,chiffres   - - - > par un espace (vide)
+ pb des phrases avec la presence de () pour eclairsissement
+
+ 4.extraction des phrases pour formation des bi-grams : cela vas plus discriminer les articles
+ -recuperer les bi-grams dans les ex : " terrorrist group"
+
+
+Extraction de features  : necessite plus de temps 
+
+"""
+from sklearn.feature_extraction.text import TfidfVectorizer
+corpus = [
+     'This is the first document.',
+     'This" document is the : second document for machine learning. machine learning is so cute',
+     'And this is the third :one.',
+     '(Is) this [the] first document?',
+     'this is  machine learning ............... "cute"....... before ----- ---- - - - --- ... ... toto'
+]
+vectorizer = TfidfVectorizer(stop_words='english',ngram_range=(1,2),use_idf=True,max_features=5)
+X = vectorizer.fit_transform(corpus)
+X=X.toarray()#inclure la presence des zeros dans les vecteurs
+
+print(X.shape)
+"""
+for x in X:
+  print(x)
+"""
+print(vectorizer.get_feature_names())
+print(X)
+
+
+Best performance : 700 , bigrams , sans pos tagging 
+
+0.9797297297297297
+0.9363057324840764
+0.6061452513966481
+1.0
+0.954954954954955
+0.8165680473372781
+0.8791208791208791
+0.3925233644859813
+1.0
+total purity : 0.840594217723283
