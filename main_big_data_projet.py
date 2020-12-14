@@ -22,11 +22,13 @@ import tensorflow as tf
 from tensorboard.plugins import projector
 from tensorflow.python.framework import ops
 
+
 #tensorboard --logdir projections
 
 #Ouverture du fichier '.txt' qui contient le corpus en mode lecture	
 file=open("nytimes_news_articles.txt","r",encoding='utf-8')
 lines=file.readlines()#Recuperation des lignes du fichier texte (corpus)
+
 
 print('preprocessing')    
 #...................Preprocessing du texte
