@@ -108,7 +108,7 @@ vectors=list(X)#mise à jour la matrice des vecteurs des données
 
 #...................Clusetring using K-means algorithm:
 print('clusetring using k-means algorithm')
-
+#init='random'
 kmeans = KMeans(n_clusters=nb_clus,random_state=0,max_iter=1000,n_jobs=-1).fit(X) #nb_clus: 25 , precision : 0.98 , 05 clusters
 #print(kmeans.cluster_centers_)
 

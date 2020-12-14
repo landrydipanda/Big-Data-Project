@@ -3,6 +3,7 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 from collections import Counter 
 from nltk import word_tokenize #tokenization
+from nltk.stem import WordNetLemmatizer
 
 #Permet de verifier si un chiffre est contenue dans une chaine de caractère donnée
 def number_in_str(x):
@@ -15,11 +16,12 @@ def number_in_str(x):
 
 #Extration des indexes des lignes qui sont indicatrices de categorie 
 def extract_id_categories(lines):
-	id_categories=[]
-	for i in range (len(lines)):
-		if(len(lines[i])>10):
-			if lines[i][:10] =='URL: http:':
-				id_categories.append(i)
+    id_categories=[]
+    for i in range (len(lines)):
+        if(len(lines[i])>10):
+            if lines[i][:10] =='URL: http:':
+                id_categories.append(i)
+    return id_categories
 
 #lemmatisation and pos tagging 
 def lemmatisation_and_pos_tagging(doc):#doc : article de type 'str'
