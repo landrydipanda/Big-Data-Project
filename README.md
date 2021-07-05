@@ -17,4 +17,4 @@ Il est divisé en deux parties :
     - Preparation des exports CSV pour Data Viz sur tensorflow projector : https://projector.tensorflow.org/
     - Convergence des clusters
 - Résultats 
-##Purity metric : 0.9/1 
+    - Purity metric : 0.9/1 
