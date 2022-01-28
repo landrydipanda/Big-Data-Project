@@ -26,6 +26,7 @@ Each trained cluster will represent a class of the data lake. The accuracy of th
 
 ## Results
     - Purity metric: 0.9/1
-- Documents
+
+## Documents
     - Scientific paper used: https://www.researchgate.net/publication/236124137_Information-theoretic_Term_Weighting_Schemes_for_Document_Clustering
     - Theoretical project report: https://drive.google.com/file/d/1OIW3TIMq9uRz1FFarJ_ukKfHDp8RKipa/view?usp=sharing
